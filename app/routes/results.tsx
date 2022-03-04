@@ -1,20 +1,20 @@
-import ButtonPrimary from "~/components/layout/ButtonPrimary";
 import { useNavigate } from "remix";
+import ButtonSecondary from "~/components/layout/ButtonSecondary";
 import Steps from "~/components/layout/Steps";
 
-export default function Index() {
+export default function Results() {
   let navigate = useNavigate();
 
   return (
     <>
       <Steps
         className="mb-6"
-        step1="current"
-        step2="upcoming"
-        step3="upcoming"
+        step1="complete"
+        step2="complete"
+        step3="current"
       />
       <section className="prose mb-3">
-        <h2>Welcome...</h2>
+        <h2>Results</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus sed
@@ -35,8 +35,8 @@ export default function Index() {
         </p>
       </section>
       <div className="flex space-x-2 border-t pt-5">
-        <ButtonPrimary
-          label="Start questionnaire"
+        <ButtonSecondary
+          label="Back"
           onClick={() => navigate("/questionnaire")}
         />
       </div>

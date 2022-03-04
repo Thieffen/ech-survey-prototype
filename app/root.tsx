@@ -7,14 +7,19 @@ import {
   ScrollRestoration,
 } from "remix";
 import type { MetaFunction } from "remix";
-import styles from "./styles/app.css"
+import ECLStyles from "@ecl/preset-ec/dist/styles/ecl-ec.css";
+import TailwindStyles from "./styles/app.css";
+import Steps from "~/components/layout/Steps";
 
 export const meta: MetaFunction = () => {
   return { title: "New Remix App" };
 };
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }]
+  return [
+    { rel: "stylesheet", href: ECLStyles },
+    { rel: "stylesheet", href: TailwindStyles },
+  ];
 }
 
 export default function App() {
@@ -26,7 +31,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="ecl-container my-6">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
