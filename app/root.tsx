@@ -1,3 +1,4 @@
+import type { MetaFunction } from "remix";
 import {
   Links,
   LiveReload,
@@ -6,10 +7,9 @@ import {
   Scripts,
   ScrollRestoration,
 } from "remix";
-import type { MetaFunction } from "remix";
 import ECLStyles from "@ecl/preset-ec/dist/styles/ecl-ec.css";
 import TailwindStyles from "./styles/app.css";
-import Steps from "~/components/layout/Steps";
+import { useState } from "react";
 
 export const meta: MetaFunction = () => {
   return { title: "New Remix App" };
@@ -22,7 +22,39 @@ export function links() {
   ];
 }
 
+export type Gender = "F" | "M" | "NB";
+export type Questionnaire = {};
+export type AppContextType = {
+  gender: Gender | null;
+  genderHandler: Function;
+  questionnaire: Questionnaire;
+  questionnaireHandler: Function;
+};
+
 export default function App() {
+  // we do not pre-select a particular gender
+  const [gender, setGender] = useState<Gender | null>(null);
+  const changeGender = (genderChoice: "F" | "M" | "NB") => {
+    setGender(genderChoice);
+  };
+
+  const [questionnaire, setQuestionnaire] = useState<Questionnaire>({});
+
+  const updateQuestionnaire = (questionId: string, answer: string) => {
+    console.log("update questionnaire", questionId, answer);
+    setQuestionnaire({
+      ...questionnaire,
+      [questionId]: answer,
+    });
+  };
+
+  const context: AppContextType = {
+    gender: gender,
+    genderHandler: changeGender,
+    questionnaire: questionnaire,
+    questionnaireHandler: updateQuestionnaire,
+  };
+
   return (
     <html lang="en">
       <head>
@@ -32,7 +64,7 @@ export default function App() {
         <Links />
       </head>
       <body className="ecl-container my-6">
-        <Outlet />
+        <Outlet context={context} />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

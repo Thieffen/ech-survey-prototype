@@ -1,11 +1,11 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
+import { AppContextType, Gender } from "~/root";
+import { useOutletContext } from "remix";
 
 const memoryOptions = [
-  { name: "she / her / her", inStock: true },
-  { name: "he / his / him", inStock: true },
-  { name: "they / them / their", inStock: true },
+  { name: "she / her / her", value: "F" },
+  { name: "he / him / his", value: "M" },
+  { name: "they / them / their", value: "NB" },
 ];
 
 function classNames(...classes: string[]) {
@@ -13,7 +13,11 @@ function classNames(...classes: string[]) {
 }
 
 export default function GenderSelector() {
-  const [mem, setMem] = useState(null);
+  const { gender, genderHandler } = useOutletContext<AppContextType>();
+
+  const update = (value: Gender) => {
+    genderHandler(value);
+  };
 
   return (
     <div className="mb-6">
@@ -23,15 +27,15 @@ export default function GenderSelector() {
         </h2>
       </div>
 
-      <RadioGroup value={mem} onChange={setMem} className="mt-6 w-2/3">
+      <RadioGroup value={gender} onChange={update} className="mt-6 lg:w-2/3">
         <RadioGroup.Label className="sr-only">
           Choose the pronouns you prefer
         </RadioGroup.Label>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {memoryOptions.map((option) => (
             <RadioGroup.Option
-              key={option.name}
-              value={option}
+              key={option.value}
+              value={option.value}
               className={({ active, checked }) =>
                 classNames(
                   "cursor-pointer focus:outline-none",
@@ -42,7 +46,6 @@ export default function GenderSelector() {
                   "flex items-center justify-center rounded-md border py-3 px-3 text-sm font-medium uppercase sm:flex-1"
                 )
               }
-              disabled={!option.inStock}
             >
               <RadioGroup.Label as="p">{option.name}</RadioGroup.Label>
             </RadioGroup.Option>
