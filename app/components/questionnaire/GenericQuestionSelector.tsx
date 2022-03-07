@@ -8,19 +8,19 @@ type Props = {
 };
 
 const options = [
-  { id: "r0", title: "Not like me at all" },
-  { id: "r1", title: "Not like me" },
-  { id: "r2", title: "A little like me" },
-  { id: "r3", title: "Somewhat like me" },
-  { id: "r4", title: "Like me" },
-  { id: "decline", title: "I prefer not to answer" },
+  { id: "0", title: "Not like me at all" },
+  { id: "1", title: "Not like me" },
+  { id: "2", title: "A little like me" },
+  { id: "3", title: "Somewhat like me" },
+  { id: "4", title: "Like me" },
+  { id: "N", title: "I prefer not to answer" },
 ];
 
 export default function GenericQuestionSelector({ id, title }: Props) {
   const { questionnaireHandler } = useOutletContext<AppContextType>();
 
   const update = (questionId: string, answer: string) => {
-    questionnaireHandler(questionId, answer);
+    questionnaireHandler(questionId, answer.slice(-1));
   };
 
   return (
@@ -44,9 +44,7 @@ export default function GenericQuestionSelector({ id, title }: Props) {
                   htmlFor={inputId}
                   className={classNames(
                     "ml-3 block cursor-pointer text-sm font-medium",
-                    option.id === "decline"
-                      ? "text-yellow-500"
-                      : "text-gray-700"
+                    option.id === "0" ? "text-yellow-500" : "text-gray-700"
                   )}
                 >
                   {option.title}

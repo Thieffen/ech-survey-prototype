@@ -41,10 +41,9 @@ export default function App() {
   const [questionnaire, setQuestionnaire] = useState<Questionnaire>({});
 
   const updateQuestionnaire = (questionId: string, answer: string) => {
-    console.log("update questionnaire", questionId, answer);
-    setQuestionnaire({
-      ...questionnaire,
-      [questionId]: answer,
+    setQuestionnaire((prevState) => {
+      const newState = { ...questionnaire, [questionId]: answer };
+      return newState;
     });
   };
 

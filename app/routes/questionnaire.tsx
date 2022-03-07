@@ -5,45 +5,13 @@ import Steps from "~/components/layout/Steps";
 import GenderSelector from "~/components/questionnaire/GenderSelector";
 import GenericQuestionSelector from "~/components/questionnaire/GenericQuestionSelector";
 
-import type { AppContextType, Gender } from "~/root";
-
-function genderify(word: string, gender: Gender, lowercase: boolean = true) {
-  const genderMatrix = {
-    F: ["She", "Her", "Her"],
-    M: ["He", "him", "His"],
-    NB: ["They", "Them", "Their"],
-  };
-
-  switch (word) {
-    case "he":
-      return lowercase
-        ? genderMatrix[gender][0].toLowerCase()
-        : genderMatrix[gender][0];
-    case "him":
-      return lowercase
-        ? genderMatrix[gender][1].toLowerCase()
-        : genderMatrix[gender][1];
-    case "his":
-      return lowercase
-        ? genderMatrix[gender][2].toLowerCase()
-        : genderMatrix[gender][2];
-    default:
-      return gender !== "NB" ? word + "s" : word;
-  }
-}
+import type { AppContextType } from "~/root";
+import { questions } from "~/utils/questions";
 
 export default function QuestionnaireRoute() {
   let navigate = useNavigate();
 
   const { gender, questionnaire } = useOutletContext<AppContextType>();
-
-  // prettier-ignore
-  const questions = gender ?
-    [
-      {id: 'Q01', title: `Thinking up new ideas and being creative is important to ${genderify("him", gender)}. ${genderify("he", gender, false)} ${genderify("like", gender)} to do things in ${genderify("his", gender)} own original way.`,},
-      {id: 'Q02', title: `It is important to ${genderify("him", gender)} to be rich. ${genderify("he", gender, false)} wants to have a lot of money and expensive things.`,},
-      {id: 'Q03', title: `${genderify('he', gender, false)} ${genderify('think', gender)} it is important that every person in the world should be treated equally. ${genderify('he', gender, false)} ${genderify('believe', gender)} everyone should have equal opportunities in life.`},
-    ] : [];
 
   return (
     <>
@@ -74,7 +42,7 @@ export default function QuestionnaireRoute() {
             description and tell us how much each person is or is not like you.
           </h2>
           <div className="divide-y">
-            {questions.map((question) => (
+            {questions(gender).map((question) => (
               <GenericQuestionSelector
                 key={question.id}
                 id={question.id}
@@ -87,12 +55,14 @@ export default function QuestionnaireRoute() {
 
       <div className="flex space-x-2 border-t pt-5">
         <ButtonSecondary label="Back" onClick={() => navigate("/")} />
-        {gender && (
-          <ButtonPrimary
-            label="View results"
-            onClick={() => navigate("/results")}
-          />
-        )}
+        {gender &&
+          Object.keys(questionnaire).length === questions(gender).length && (
+            <ButtonPrimary
+              label="View results"
+              onClick={() => navigate("/results")}
+              className=""
+            />
+          )}
       </div>
     </>
   );
