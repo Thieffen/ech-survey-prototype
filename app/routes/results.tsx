@@ -5,13 +5,14 @@ import Debug from "~/components/layout/Debug";
 import { AppContextType } from "~/root";
 import RadarChart from "~/components/results/RadarChart";
 import { questions } from "~/utils/questions";
+import { compute } from "~/utils/schwartz";
 
 export default function Results() {
   let navigate = useNavigate();
   const { gender, questionnaire } = useOutletContext<AppContextType>();
 
   const isCompleted =
-    Object.keys(questionnaire).length === questions(gender).length;
+    gender && Object.keys(questionnaire).length === questions(gender).length;
 
   return (
     <>
@@ -24,9 +25,11 @@ export default function Results() {
 
       <section className="prose">
         {isCompleted ? (
-          <RadarChart />
+          <RadarChart results={compute(questionnaire)} />
         ) : (
-          <p>Please go back and complete the questionnaire</p>
+          <p className="font-medium text-red-500">
+            Please go back and complete the questionnaire
+          </p>
         )}
       </section>
 

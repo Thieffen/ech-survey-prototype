@@ -5,6 +5,7 @@ import { AppContextType } from "~/root";
 type Props = {
   id: string;
   title: string;
+  index: number;
 };
 
 const options = [
@@ -17,7 +18,7 @@ const options = [
   // { id: "N", title: "I prefer not to answer" },
 ];
 
-export default function GenericQuestionSelector({ id, title }: Props) {
+export default function GenericQuestionSelector({ id, title, index }: Props) {
   const { questionnaire, questionnaireHandler } =
     useOutletContext<AppContextType>();
 
@@ -28,11 +29,21 @@ export default function GenericQuestionSelector({ id, title }: Props) {
   return (
     <div
       className={classNames(
-        "py-4 px-2",
-        questionnaire[id] ? "bg-green-50" : ""
+        "mb-6 py-4 px-2 shadow",
+        questionnaire[id] ? "bg-green-50" : "bg-gray-50"
       )}
     >
-      <label className="text-base font-medium text-gray-500">{title}</label>
+      <label className="items-center space-x-2 text-base font-medium text-gray-500 lg:flex">
+        <span
+          className={classNames(
+            "justify-center rounded-md px-3 py-1 font-bold",
+            questionnaire[id] ? "bg-green-500 text-green-50" : "bg-yellow-100"
+          )}
+        >
+          {index}
+        </span>
+        <span className="flex-1">{title}</span>
+      </label>
       <fieldset className="mt-4">
         <legend className="sr-only">option</legend>
         <div className="space-y-4 md:flex md:items-center md:space-y-0 md:space-x-10">

@@ -2,9 +2,12 @@
 import Radar from "react-d3-radar";
 import { SchwartzValuesUE } from "~/utils/schwartz";
 
-export default function RadarChart() {
+export default function RadarChart({ results }) {
   const map = new Map();
   SchwartzValuesUE.forEach((sv) => map.set(sv.key, sv.value + 1));
+
+  const mapUser = new Map();
+  results.forEach((sv) => map.set(sv.key, sv.value + 1));
 
   return (
     <Radar
@@ -28,18 +31,11 @@ export default function RadarChart() {
             label: "EU Citizen (average)",
             values: Object.fromEntries(map),
           },
-          // {
-          //   key: "user",
-          //   label: "You",
-          //   values: {
-          //     resilience: 10,
-          //     strength: 8,
-          //     adaptability: 6,
-          //     creativity: 4,
-          //     openness: 2,
-          //     confidence: 0,
-          //   },
-          // },
+          {
+            key: "user",
+            label: "Your results",
+            values: Object.fromEntries(mapUser),
+          },
         ],
       }}
     />

@@ -10,3 +10,105 @@ export const SchwartzValuesUE = [
   { key: "stimulation", label: "stimulation", value: -0.76438 },
   { key: "self_direction", label: "self direction", value: 0.353143 },
 ];
+
+/**
+ * ***Syntax for creating the 10 values***
+ * rename var
+ *   (ipcrtiv=v1)
+ * (imprich=v2)
+ * (ipeqopt=v3)
+ * (ipshabt=v4)
+ * (impsafe=v5)
+ * (impdiff=v6)
+ * (ipfrule=v7)
+ * (ipudrst=v8)
+ * (ipmodst=v9)
+ * (ipgdtim=v10)
+ * (impfree=v11)
+ * (iphlppl=v12)
+ * (ipsuces=v13)
+ * (ipstrgv=v14)
+ * (ipadvnt=v15)
+ * (ipbhprp=v16)
+ * (iprspot=v17)
+ * (iplylfr=v18)
+ * (impenv=v19)
+ * (imptrad=v20)
+ * (impfun=v21).
+ *   missing values v1 to v21 (7,8,9).
+ *   COMPUTE mrat = MEAN(v1 to v21) .
+ * EXECUTE .
+
+
+
+ */
+export const compute = (questionnaire) => {
+  console.log(questionnaire);
+  // COMPUTE mrat = MEAN(v1 to v21)
+  const mrat = parseFloat(
+    Object.values(questionnaire).reduce((acc, v, i, a) => acc + v / a.length, 0)
+  ).toFixed(5);
+
+  console.log("mrat:", mrat);
+
+  // SECURITY (impsafe, ipstrgv)
+  // COMPUTE SEcenter = MEAN(v5, v14) - mrat
+  // prettier-ignore
+  const SEcenter = (((parseInt(questionnaire["impsafe"]) + parseInt(questionnaire["ipstrgv"])) / 2) - mrat).toFixed(5);
+
+  // COMPUTE COcenter = MEAN(v7, v16) - mrat .
+  // prettier-ignore
+  const COcenter = ((parseInt(questionnaire["ipfrule"]) + parseInt(questionnaire["ipbhprp"])) / 2 - mrat).toFixed(5);
+
+  // TRADITION
+  // COMPUTE TRcenter = MEAN(v9, v20) - mrat .
+  // prettier-ignore
+  const TRcenter = ((parseInt(questionnaire["ipmodst"]) + parseInt(questionnaire["imptrad"])) / 2 - mrat).toFixed(5);
+
+  // BENEVOLENCE
+  // COMPUTE BEcenter = MEAN(v12, v18) - mrat.
+  // prettier-ignore
+  const BEcenter = ((parseInt(questionnaire["iphlppl"]) + parseInt(questionnaire["iplylfr"])) / 2 - mrat).toFixed(5);
+
+  // UNIVERSALITY
+  // COMPUTE UNcenter = MEAN(v3, v8, v19) - mrat .
+  // prettier-ignore
+  const UNcenter = ((parseInt(questionnaire["ipeqopt"]) + parseInt(questionnaire["iplylfr"])  + parseInt(questionnaire["impenv"])) / 3 - mrat).toFixed(5);
+
+  // SELF-DIRECTION
+  // COMPUTE SDcenter = MEAN(v1, v11) - mrat .
+  // prettier-ignore
+  const SDcenter = ((parseInt(questionnaire["ipcrtiv"]) + parseInt(questionnaire["impfree"])) / 2 - mrat).toFixed(5);
+
+  // STIMULATION
+  // COMPUTE STcenter = MEAN(v6, v15) - mrat .
+  // prettier-ignore
+  const STcenter = ((parseInt(questionnaire["impdiff"]) + parseInt(questionnaire["ipadvnt"])) / 2 - mrat).toFixed(5);
+
+  // HEDONISM
+  // COMPUTE HEcenter = MEAN(v10, v21) - mrat.
+  // prettier-ignore
+  const HEcenter = ((parseInt(questionnaire["ipgdtim"]) + parseInt(questionnaire["impfun"])) / 2 - mrat).toFixed(5);
+
+  // COMPUTE ACcenter = MEAN(v4, v13) - mrat .
+  // prettier-ignore
+  const ACcenter = ((parseInt(questionnaire["ipshabt"]) + parseInt(questionnaire["ipsuces"])) / 2 - mrat).toFixed(5);
+
+  // POWER
+  // COMPUTE POcenter = MEAN(v2, v17) - mrat .
+  // prettier-ignore
+  const POcenter = ((parseInt(questionnaire["imprich"]) + parseInt(questionnaire["iprspot"])) / 2 - mrat).toFixed(5);
+
+  return [
+    { key: "universalism", label: "universalism", value: UNcenter },
+    { key: "benevolence", label: "benevolence", value: BEcenter },
+    { key: "tradition", label: "tradition", value: TRcenter },
+    { key: "conformity", label: "conformity", value: COcenter },
+    { key: "security", label: "security", value: SEcenter },
+    { key: "power", label: "power", value: POcenter },
+    { key: "achievement", label: "achievement", value: ACcenter },
+    { key: "hedonism", label: "hedonism", value: HEcenter },
+    { key: "stimulation", label: "stimulation", value: STcenter },
+    { key: "self_direction", label: "self direction", value: SDcenter },
+  ];
+};

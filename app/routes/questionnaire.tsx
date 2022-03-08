@@ -37,11 +37,12 @@ export default function QuestionnaireRoute() {
             Now, we will briefly describe some people. Please read each
             description and tell us how much each person is or is not like you.
           </h2>
-          <div className="divide-y">
-            {questions(gender).map((question) => (
+          <div>
+            {questions(gender).map((question, index) => (
               <GenericQuestionSelector
                 key={question.id}
                 id={question.id}
+                index={index}
                 title={question.title}
               />
             ))}
@@ -59,7 +60,7 @@ export default function QuestionnaireRoute() {
               className=""
             />
           ) : (
-            <p className="px-2 font-medium text-green-400">
+            <p className="px-2 font-medium text-gray-400">
               Please complete the {remainingQuestionsCounter} remaining
               questions to show your results
             </p>
