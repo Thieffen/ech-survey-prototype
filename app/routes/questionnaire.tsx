@@ -13,6 +13,11 @@ export default function QuestionnaireRoute() {
   let navigate = useNavigate();
 
   const { gender, questionnaire } = useOutletContext<AppContextType>();
+  const totalQuestionsCounter = questions(gender).length;
+  const completedQuestionsCounter = Object.keys(questionnaire).length;
+  const remainingQuestionsCounter =
+    totalQuestionsCounter - completedQuestionsCounter;
+  const isQuestionnaireCompleted = remainingQuestionsCounter <= 0;
 
   return (
     <>
@@ -44,16 +49,21 @@ export default function QuestionnaireRoute() {
         </section>
       )}
 
-      <div className="flex space-x-2 border-t pt-5">
+      <div className="flex items-center space-x-2 border-t pt-5">
         <ButtonSecondary label="Back" onClick={() => navigate("/")} />
         {gender &&
-          Object.keys(questionnaire).length === questions(gender).length && (
+          (isQuestionnaireCompleted ? (
             <ButtonPrimary
               label="View results"
               onClick={() => navigate("/results")}
               className=""
             />
-          )}
+          ) : (
+            <p className="px-2 font-medium text-green-400">
+              Please complete the {remainingQuestionsCounter} remaining
+              questions to show your results
+            </p>
+          ))}
       </div>
       <Debug questionnaire={questionnaire} gender={gender} />
     </>

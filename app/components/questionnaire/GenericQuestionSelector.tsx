@@ -26,7 +26,12 @@ export default function GenericQuestionSelector({ id, title }: Props) {
   };
 
   return (
-    <div className="py-4 ">
+    <div
+      className={classNames(
+        "py-4 px-2",
+        questionnaire[id] ? "bg-green-50" : ""
+      )}
+    >
       <label className="text-base font-medium text-gray-500">{title}</label>
       <fieldset className="mt-4">
         <legend className="sr-only">option</legend>
