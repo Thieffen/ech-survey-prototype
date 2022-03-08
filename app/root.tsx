@@ -10,6 +10,7 @@ import {
 import ECLStyles from "@ecl/preset-ec/dist/styles/ecl-ec.css";
 import TailwindStyles from "./styles/app.css";
 import { useState } from "react";
+import { questions } from "~/utils/questions";
 
 export const meta: MetaFunction = () => {
   return { title: "New Remix App" };
@@ -40,15 +41,12 @@ export default function App() {
   };
 
   const [questionnaire, setQuestionnaire] = useState<Questionnaire>({});
-  const [questionnaireCompleted, setQuestionnaireCompleted] =
-    useState<boolean>(false);
 
   const updateQuestionnaire = (questionId: string, answer: string) => {
-    setQuestionnaire((prevState) => {
-      const newState = { ...questionnaire, [questionId]: answer };
-      setQuestionnaireCompleted(Object.keys(questionnaire).length >= 2);
-      return newState;
-    });
+    setQuestionnaire((prevState) => ({
+      ...questionnaire,
+      [questionId]: answer,
+    }));
   };
 
   const context: AppContextType = {
@@ -56,7 +54,6 @@ export default function App() {
     genderHandler: changeGender,
     questionnaire: questionnaire,
     questionnaireHandler: updateQuestionnaire,
-    questionnaireCompleted: questionnaireCompleted,
   };
 
   return (

@@ -1,16 +1,12 @@
-export default function Debug({
-  gender,
-  questionnaire,
-  questionnaireCompleted,
-}) {
+export default function Debug({ gender, questionnaire }) {
   return (
-    <div className="ecl-u-bg-red-100 mb-6 border text-white">
+    <div className="ecl-u-bg-red-100 fixed top-0 mb-6 border text-xs text-white opacity-50">
       <pre>
         gender: {gender}
         <br />
         questionnaire: {JSON.stringify(questionnaire)}
         <br />
-        completed: {JSON.stringify(questionnaireCompleted)}
+        questions answered: {Object.keys(questionnaire).length}
       </pre>
     </div>
   );

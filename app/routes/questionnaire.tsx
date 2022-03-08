@@ -12,8 +12,7 @@ import Debug from "~/components/layout/Debug";
 export default function QuestionnaireRoute() {
   let navigate = useNavigate();
 
-  const { gender, questionnaire, questionnaireCompleted } =
-    useOutletContext<AppContextType>();
+  const { gender, questionnaire } = useOutletContext<AppContextType>();
 
   return (
     <>
@@ -56,11 +55,7 @@ export default function QuestionnaireRoute() {
             />
           )}
       </div>
-      <Debug
-        questionnaire={questionnaire}
-        gender={gender}
-        questionnaireCompleted={questionnaireCompleted}
-      />
+      <Debug questionnaire={questionnaire} gender={gender} />
     </>
   );
 }

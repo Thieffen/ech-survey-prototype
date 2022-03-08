@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useOutletContext } from "remix";
-import { AppContextType, Gender } from "~/root";
+import { AppContextType } from "~/root";
 
 type Props = {
   id: string;
@@ -8,12 +8,13 @@ type Props = {
 };
 
 const options = [
-  { id: "0", title: "Not like me at all" },
-  { id: "1", title: "Not like me" },
-  { id: "2", title: "A little like me" },
-  { id: "3", title: "Somewhat like me" },
-  { id: "4", title: "Like me" },
-  { id: "N", title: "I prefer not to answer" },
+  { id: "1", title: "Not like me at all" },
+  { id: "2", title: "Not like me" },
+  { id: "3", title: "A little like me" },
+  { id: "4", title: "Somewhat like me" },
+  { id: "5", title: "Like me" },
+  { id: "6", title: "Very much like me" },
+  // { id: "N", title: "I prefer not to answer" },
 ];
 
 export default function GenericQuestionSelector({ id, title }: Props) {
@@ -32,6 +33,7 @@ export default function GenericQuestionSelector({ id, title }: Props) {
         <div className="space-y-4 md:flex md:items-center md:space-y-0 md:space-x-10">
           {options.map((option) => {
             const inputId = [id, option.id].join("-");
+
             return (
               <div key={option.id} className="flex items-center">
                 <input
@@ -46,8 +48,11 @@ export default function GenericQuestionSelector({ id, title }: Props) {
                 <label
                   htmlFor={inputId}
                   className={classNames(
-                    "ml-3 block cursor-pointer text-sm font-medium",
-                    option.id === "N" ? "text-yellow-500" : "text-gray-700"
+                    "ml-3 block cursor-pointer text-xs font-medium",
+                    // @ts-ignore
+                    questionnaire[id] === option.id
+                      ? "text-indigo-500"
+                      : "text-gray-500"
                   )}
                 >
                   {option.title}

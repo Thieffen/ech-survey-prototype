@@ -4,11 +4,14 @@ import Steps from "~/components/layout/Steps";
 import Debug from "~/components/layout/Debug";
 import { AppContextType } from "~/root";
 import RadarChart from "~/components/results/RadarChart";
+import { questions } from "~/utils/questions";
 
 export default function Results() {
   let navigate = useNavigate();
-  const { gender, questionnaire, questionnaireCompleted } =
-    useOutletContext<AppContextType>();
+  const { gender, questionnaire } = useOutletContext<AppContextType>();
+
+  const isCompleted =
+    Object.keys(questionnaire).length === questions(gender).length;
 
   return (
     <>
@@ -20,7 +23,7 @@ export default function Results() {
       />
 
       <section className="prose">
-        {questionnaireCompleted ? (
+        {isCompleted ? (
           <RadarChart />
         ) : (
           <p>Please go back and complete the questionnaire</p>
@@ -34,11 +37,7 @@ export default function Results() {
         />
       </div>
 
-      <Debug
-        questionnaire={questionnaire}
-        gender={gender}
-        questionnaireCompleted={questionnaireCompleted}
-      />
+      <Debug questionnaire={questionnaire} gender={gender} />
     </>
   );
 }
