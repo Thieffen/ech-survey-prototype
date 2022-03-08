@@ -25,8 +25,7 @@ export default function Steps({ className = "", step1, step2, step3 }: Props) {
                 <span className="text-sm font-medium">{step.name}</span>
               </div>
             ) : step.status === "current" ? (
-              <a
-                href={step.href}
+              <div
                 className="flex flex-col border-l-4 border-indigo-600 bg-indigo-100 py-2 pl-4 pr-4 md:border-l-0 md:border-t-4 md:pl-4 md:pt-4 md:pb-2"
                 aria-current="step"
               >
@@ -34,17 +33,14 @@ export default function Steps({ className = "", step1, step2, step3 }: Props) {
                   {step.id}
                 </span>
                 <span className="text-sm font-medium">{step.name}</span>
-              </a>
+              </div>
             ) : (
-              <a
-                href={step.href}
-                className="group flex flex-col border-l-4 border-gray-200 py-2 pl-4 pr-4 md:border-l-0 md:border-t-4 md:pl-4 md:pt-4 md:pb-2"
-              >
+              <div className="group flex flex-col border-l-4 border-gray-200 py-2 pl-4 pr-4 md:border-l-0 md:border-t-4 md:pl-4 md:pt-4 md:pb-2">
                 <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">
                   {step.id}
                 </span>
                 <span className="text-sm font-medium">{step.name}</span>
-              </a>
+              </div>
             )}
           </li>
         ))}

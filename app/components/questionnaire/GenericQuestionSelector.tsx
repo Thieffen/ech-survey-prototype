@@ -17,7 +17,8 @@ const options = [
 ];
 
 export default function GenericQuestionSelector({ id, title }: Props) {
-  const { questionnaireHandler } = useOutletContext<AppContextType>();
+  const { questionnaire, questionnaireHandler } =
+    useOutletContext<AppContextType>();
 
   const update = (questionId: string, answer: string) => {
     questionnaireHandler(questionId, answer.slice(-1));
@@ -34,6 +35,8 @@ export default function GenericQuestionSelector({ id, title }: Props) {
             return (
               <div key={option.id} className="flex items-center">
                 <input
+                  // @ts-ignore
+                  checked={questionnaire[id] === option.id}
                   id={inputId}
                   name={id}
                   type="radio"
