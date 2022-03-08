@@ -7,30 +7,22 @@ import GenericQuestionSelector from "~/components/questionnaire/GenericQuestionS
 
 import type { AppContextType } from "~/root";
 import { questions } from "~/utils/questions";
+import Debug from "~/components/layout/Debug";
 
 export default function QuestionnaireRoute() {
   let navigate = useNavigate();
 
-  const { gender, questionnaire } = useOutletContext<AppContextType>();
+  const { gender, questionnaire, questionnaireCompleted } =
+    useOutletContext<AppContextType>();
 
   return (
     <>
-      <div className="ecl-u-bg-red-100 mb-6 border text-white">
-        <pre>
-          gender: {gender}
-          <br />
-          questionnaire: {JSON.stringify(questionnaire)}
-        </pre>
-      </div>
       <Steps
         className="mb-6"
         step1="complete"
         step2="current"
         step3="upcoming"
       />
-      <section className="prose mb-6">
-        <h2>Questionnaire</h2>
-      </section>
       <section className="mb-12">
         <GenderSelector />
       </section>
@@ -64,6 +56,11 @@ export default function QuestionnaireRoute() {
             />
           )}
       </div>
+      <Debug
+        questionnaire={questionnaire}
+        gender={gender}
+        questionnaireCompleted={questionnaireCompleted}
+      />
     </>
   );
 }

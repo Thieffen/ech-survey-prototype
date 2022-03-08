@@ -29,6 +29,7 @@ export type AppContextType = {
   genderHandler: Function;
   questionnaire: Questionnaire;
   questionnaireHandler: Function;
+  questionnaireCompleted: boolean;
 };
 
 export default function App() {
@@ -39,10 +40,13 @@ export default function App() {
   };
 
   const [questionnaire, setQuestionnaire] = useState<Questionnaire>({});
+  const [questionnaireCompleted, setQuestionnaireCompleted] =
+    useState<boolean>(false);
 
   const updateQuestionnaire = (questionId: string, answer: string) => {
     setQuestionnaire((prevState) => {
       const newState = { ...questionnaire, [questionId]: answer };
+      setQuestionnaireCompleted(Object.keys(questionnaire).length >= 2);
       return newState;
     });
   };
@@ -52,6 +56,7 @@ export default function App() {
     genderHandler: changeGender,
     questionnaire: questionnaire,
     questionnaireHandler: updateQuestionnaire,
+    questionnaireCompleted: questionnaireCompleted,
   };
 
   return (

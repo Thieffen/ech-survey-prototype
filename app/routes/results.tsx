@@ -1,9 +1,14 @@
-import { useNavigate } from "remix";
+import { useNavigate, useOutletContext } from "remix";
 import ButtonSecondary from "~/components/layout/ButtonSecondary";
 import Steps from "~/components/layout/Steps";
+import Debug from "~/components/layout/Debug";
+import { AppContextType } from "~/root";
+import RadarChart from "~/components/results/RadarChart";
 
 export default function Results() {
   let navigate = useNavigate();
+  const { gender, questionnaire, questionnaireCompleted } =
+    useOutletContext<AppContextType>();
 
   return (
     <>
@@ -13,33 +18,27 @@ export default function Results() {
         step2="complete"
         step3="current"
       />
-      <section className="prose mb-3">
-        <h2>Results</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lacus sed
-          viverra tellus in hac. Volutpat commodo sed egestas egestas fringilla
-          phasellus. Amet venenatis urna cursus eget nunc scelerisque viverra
-          mauris. Egestas egestas fringilla phasellus faucibus scelerisque
-          eleifend donec pretium vulputate. Morbi tristique senectus et netus.
-          Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque
-          habitant. Dui nunc mattis enim ut tellus elementum sagittis. Tellus
-          molestie nunc non blandit massa enim nec dui. Purus non enim praesent
-          elementum facilisis leo vel fringilla. Amet risus nullam eget felis
-          eget nunc. Feugiat nibh sed pulvinar proin gravida hendrerit lectus a.
-          Nibh sed pulvinar proin gravida hendrerit lectus. Mauris nunc congue
-          nisi vitae. Mi proin sed libero enim sed faucibus turpis in eu. Nunc
-          vel risus commodo viverra. Sodales ut eu sem integer vitae justo eget.
-          Ut faucibus pulvinar elementum integer enim neque volutpat ac. Congue
-          quisque egestas diam in arcu cursus. Dui nunc mattis enim ut tellus.
-        </p>
+
+      <section className="prose">
+        {questionnaireCompleted ? (
+          <RadarChart />
+        ) : (
+          <p>Please go back and complete the questionnaire</p>
+        )}
       </section>
+
       <div className="flex space-x-2 border-t pt-5">
         <ButtonSecondary
           label="Back"
           onClick={() => navigate("/questionnaire")}
         />
       </div>
+
+      <Debug
+        questionnaire={questionnaire}
+        gender={gender}
+        questionnaireCompleted={questionnaireCompleted}
+      />
     </>
   );
 }

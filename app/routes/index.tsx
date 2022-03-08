@@ -1,9 +1,14 @@
 import ButtonPrimary from "~/components/layout/ButtonPrimary";
-import { useNavigate } from "remix";
+import { useNavigate, useOutletContext } from "remix";
 import Steps from "~/components/layout/Steps";
+import { AppContextType } from "~/root";
+import Debug from "~/components/layout/Debug";
 
 export default function Index() {
   let navigate = useNavigate();
+
+  const { gender, questionnaire, questionnaireCompleted } =
+    useOutletContext<AppContextType>();
 
   return (
     <>
@@ -40,6 +45,11 @@ export default function Index() {
           onClick={() => navigate("/questionnaire")}
         />
       </div>
+      <Debug
+        questionnaire={questionnaire}
+        gender={gender}
+        questionnaireCompleted={questionnaireCompleted}
+      />
     </>
   );
 }

@@ -44,7 +44,7 @@ export default function GenericQuestionSelector({ id, title }: Props) {
                   htmlFor={inputId}
                   className={classNames(
                     "ml-3 block cursor-pointer text-sm font-medium",
-                    option.id === "0" ? "text-yellow-500" : "text-gray-700"
+                    option.id === "N" ? "text-yellow-500" : "text-gray-700"
                   )}
                 >
                   {option.title}
