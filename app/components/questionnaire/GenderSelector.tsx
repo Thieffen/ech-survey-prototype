@@ -21,13 +21,7 @@ export default function GenderSelector() {
 
   return (
     <div className="mb-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-base font-medium text-gray-900 underline">
-          Which pronouns do you prefer to be used when people speak about you?
-        </h2>
-      </div>
-
-      <RadioGroup value={gender} onChange={update} className="mt-6 lg:w-2/3">
+      <RadioGroup value={gender} onChange={update} className="mt-6">
         <RadioGroup.Label className="sr-only">
           Choose the pronouns you prefer
         </RadioGroup.Label>

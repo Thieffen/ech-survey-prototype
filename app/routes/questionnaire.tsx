@@ -27,16 +27,19 @@ export default function QuestionnaireRoute() {
         step2="current"
         step3="upcoming"
       />
-      <section className="mb-12">
+      <section className="prose mb-12">
+        <h3>
+          Which pronouns do you prefer to be used when people speak about you?
+        </h3>
         <GenderSelector />
       </section>
 
       {gender && (
-        <section>
-          <h2 className="mb-6 text-base font-medium text-gray-900 underline">
+        <section className="prose">
+          <h3>
             Now, we will briefly describe some people. Please read each
             description and tell us how much each person is or is not like you.
-          </h2>
+          </h3>
           <div>
             {questions(gender).map((question, index) => (
               <GenericQuestionSelector
