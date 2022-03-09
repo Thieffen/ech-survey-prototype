@@ -66,8 +66,10 @@ export default function Results() {
       <div>
         {isCompleted ? (
           <>
-            <RadarChart variables={SchwartzValuesUE} sets={sets} />
-            <section>
+            <section className="prose">
+              <RadarChart variables={SchwartzValuesUE} sets={sets} />
+            </section>
+            <section className="prose">
               <ResultsTable variables={SchwartzValuesUE} sets={sets} />
             </section>
           </>
