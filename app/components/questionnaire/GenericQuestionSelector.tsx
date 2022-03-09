@@ -33,7 +33,7 @@ export default function GenericQuestionSelector({ id, title, index }: Props) {
         questionnaire[id] ? "bg-green-50" : "bg-gray-50"
       )}
     >
-      <label className="items-center space-x-2 text-base font-medium text-gray-500 lg:flex">
+      <label className="items-start space-x-2 text-base font-medium text-gray-500 md:flex">
         <span
           className={classNames(
             "justify-center rounded-md px-3 py-1 font-bold",
@@ -42,7 +42,7 @@ export default function GenericQuestionSelector({ id, title, index }: Props) {
         >
           {index}
         </span>
-        <span className="flex-1">{title}</span>
+        <span className="md:w-2/3">{title}</span>
       </label>
       <fieldset className="mt-4">
         <legend className="sr-only">option</legend>

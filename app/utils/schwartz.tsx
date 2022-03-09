@@ -11,37 +11,6 @@ export const SchwartzValuesUE = [
   { key: "self_direction", label: "self direction", value: 0.353143 },
 ];
 
-/**
- * ***Syntax for creating the 10 values***
- * rename var
- *   (ipcrtiv=v1)
- * (imprich=v2)
- * (ipeqopt=v3)
- * (ipshabt=v4)
- * (impsafe=v5)
- * (impdiff=v6)
- * (ipfrule=v7)
- * (ipudrst=v8)
- * (ipmodst=v9)
- * (ipgdtim=v10)
- * (impfree=v11)
- * (iphlppl=v12)
- * (ipsuces=v13)
- * (ipstrgv=v14)
- * (ipadvnt=v15)
- * (ipbhprp=v16)
- * (iprspot=v17)
- * (iplylfr=v18)
- * (impenv=v19)
- * (imptrad=v20)
- * (impfun=v21).
- *   missing values v1 to v21 (7,8,9).
- *   COMPUTE mrat = MEAN(v1 to v21) .
- * EXECUTE .
-
-
-
- */
 export const compute = (questionnaire) => {
   console.log(questionnaire);
   // COMPUTE mrat = MEAN(v1 to v21)
@@ -99,7 +68,7 @@ export const compute = (questionnaire) => {
   // prettier-ignore
   const POcenter = ((parseInt(questionnaire["imprich"]) + parseInt(questionnaire["iprspot"])) / 2 - mrat).toFixed(5);
 
-  return [
+  const res = [
     { key: "universalism", label: "universalism", value: UNcenter },
     { key: "benevolence", label: "benevolence", value: BEcenter },
     { key: "tradition", label: "tradition", value: TRcenter },
@@ -111,4 +80,8 @@ export const compute = (questionnaire) => {
     { key: "stimulation", label: "stimulation", value: STcenter },
     { key: "self_direction", label: "self direction", value: SDcenter },
   ];
+
+  console.log("res", res);
+
+  return res;
 };

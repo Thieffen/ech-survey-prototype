@@ -1,13 +1,28 @@
 // @ts-ignore
 import Radar from "react-d3-radar";
 import { SchwartzValuesUE } from "~/utils/schwartz";
+import { scaleLinear } from "d3-scale";
 
 export default function RadarChart({ results }) {
+  //prettier-ignore
+  const scale = scaleLinear()
+    .domain([-2, 2])
+    .range([0, 100]);
+
   const map = new Map();
-  SchwartzValuesUE.forEach((sv) => map.set(sv.key, sv.value + 1));
+  SchwartzValuesUE.forEach((sv) => map.set(sv.key, sv.value));
+  console.log("Schwarz EU", SchwartzValuesUE);
+  console.log("Schwarz EU map", map);
 
   const mapUser = new Map();
-  results.forEach((sv) => map.set(sv.key, sv.value + 1));
+  results.forEach((sv) => mapUser.set(sv.key, sv.value));
+  console.log("User", results);
+  console.log("User map", mapUser);
+
+  const EUValues = Object.fromEntries(map);
+  const UserValues = Object.fromEntries(mapUser);
+
+  console.log("EUValues", EUValues);
 
   return (
     <Radar
@@ -29,12 +44,12 @@ export default function RadarChart({ results }) {
           {
             key: "eu",
             label: "EU Citizen (average)",
-            values: Object.fromEntries(map),
+            values: EUValues,
           },
           {
             key: "user",
             label: "Your results",
-            values: Object.fromEntries(mapUser),
+            values: UserValues,
           },
         ],
       }}

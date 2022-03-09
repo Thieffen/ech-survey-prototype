@@ -14,6 +14,8 @@ export default function Results() {
   const isCompleted =
     gender && Object.keys(questionnaire).length === questions(gender).length;
 
+  const results = isCompleted ? compute(questionnaire) : [];
+
   return (
     <>
       <Steps
@@ -25,7 +27,7 @@ export default function Results() {
 
       <section className="prose">
         {isCompleted ? (
-          <RadarChart results={compute(questionnaire)} />
+          <RadarChart results={results} />
         ) : (
           <p className="font-medium text-red-500">
             Please go back and complete the questionnaire

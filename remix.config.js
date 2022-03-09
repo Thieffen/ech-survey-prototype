@@ -13,4 +13,7 @@ module.exports = {
   // serverBuildPath: "api/index.js",
   // publicPath: "/build/",
   // devServerPort: 8002
+
+  // https://remix.run/docs/en/v1/pages/gotchas#importing-esm-packages
+  serverDependenciesToBundle: ["d3-scale"],
 };
