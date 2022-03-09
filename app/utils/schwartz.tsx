@@ -12,13 +12,10 @@ export const SchwartzValuesUE = [
 ];
 
 export const compute = (questionnaire) => {
-  console.log(questionnaire);
   // COMPUTE mrat = MEAN(v1 to v21)
   const mrat = parseFloat(
     Object.values(questionnaire).reduce((acc, v, i, a) => acc + v / a.length, 0)
   ).toFixed(5);
-
-  console.log("mrat:", mrat);
 
   // SECURITY (impsafe, ipstrgv)
   // COMPUTE SEcenter = MEAN(v5, v14) - mrat
@@ -80,8 +77,6 @@ export const compute = (questionnaire) => {
     { key: "stimulation", label: "stimulation", value: STcenter },
     { key: "self_direction", label: "self direction", value: SDcenter },
   ];
-
-  console.log("res", res);
 
   return res;
 };

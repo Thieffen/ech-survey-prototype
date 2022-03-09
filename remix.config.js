@@ -15,5 +15,5 @@ module.exports = {
   // devServerPort: 8002
 
   // https://remix.run/docs/en/v1/pages/gotchas#importing-esm-packages
-  serverDependenciesToBundle: ["d3-scale"],
+  serverDependenciesToBundle: ["d3-scale", "d3-array"],
 };

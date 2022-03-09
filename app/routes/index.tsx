@@ -44,7 +44,7 @@ export default function Index() {
           onClick={() => navigate("/questionnaire")}
         />
       </div>
-      <Debug questionnaire={questionnaire} gender={gender} />
+      {/*<Debug questionnaire={questionnaire} gender={gender} />*/}
     </>
   );
 }
