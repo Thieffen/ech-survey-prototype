@@ -35,21 +35,23 @@ export default function QuestionnaireRoute() {
       </section>
 
       {gender && (
-        <section className="prose">
-          <h3>
-            Now, we will briefly describe some people. Please read each
-            description and tell us how much each person is or is not like you.
-          </h3>
-          <div>
-            {questions(gender).map((question, index) => (
-              <GenericQuestionSelector
-                key={question.id}
-                id={question.id}
-                index={index}
-                title={question.title}
-              />
-            ))}
+        <section>
+          <div className="prose mb-6">
+            <h3>
+              Now, we will briefly describe some people. Please read each
+              description and tell us how much each person is or is not like
+              you.
+            </h3>
           </div>
+
+          {questions(gender).map((question, index) => (
+            <GenericQuestionSelector
+              key={question.id}
+              id={question.id}
+              index={index}
+              title={question.title}
+            />
+          ))}
         </section>
       )}
 
