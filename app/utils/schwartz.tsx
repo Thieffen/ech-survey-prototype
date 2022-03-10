@@ -1,5 +1,4 @@
 export const SchwartzValuesUE = [
-  { key: "universalism", label: "universalism", value: 0.63345 },
   { key: "self_direction", label: "self direction", value: 0.353143 },
   { key: "stimulation", label: "stimulation", value: -0.76438 },
   { key: "hedonism", label: "hedonism", value: -0.21825 },
@@ -9,6 +8,7 @@ export const SchwartzValuesUE = [
   { key: "conformity", label: "conformity", value: -0.2164 },
   { key: "tradition", label: "tradition", value: 0.143017 },
   { key: "benevolence", label: "benevolence", value: 0.775131 },
+  { key: "universalism", label: "universalism", value: 0.63345 },
 ];
 
 export const compute = (questionnaire: { string: number }) => {
