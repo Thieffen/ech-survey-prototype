@@ -37,9 +37,12 @@ export default function Results() {
   const minValue: number = Math.min(...allValues);
   const maxValue: number = Math.max(...allValues);
 
+  // let's add an offset so that the center of the graph is not the minValue
+  const minOffset: number = (Math.abs(maxValue) - Math.abs(minValue)) / 2;
+
   // rescale values
   //prettier-ignore
-  var scale = LinearScale().domain([minValue, maxValue]).range([0, 100])
+  var scale = LinearScale().domain([minValue + minOffset, maxValue]).range([0, 100])
   function scaleValues(p) {
     Object.keys(p).forEach((c) => (p[c] = scale(+p[c])));
   }
