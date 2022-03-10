@@ -12,15 +12,11 @@ export const SchwartzValuesUE = [
 ];
 
 export const compute = (questionnaire: { string: number }) => {
-  console.log("questionnaire", questionnaire);
-
   // COMPUTE mrat = MEAN(v1 to v21)
   // prettier-ignore
   const mrat: number = Object
     .values(questionnaire)
     .reduce((acc, v, i, a) => acc + v / a.length, 0);
-
-  console.log("mrat", mrat);
 
   const impsafe = questionnaire["impsafe"];
   const ipstrgv = questionnaire["ipstrgv"];
@@ -95,8 +91,6 @@ export const compute = (questionnaire: { string: number }) => {
     { key: "stimulation", label: "stimulation", value: STcenter },
     { key: "self_direction", label: "self direction", value: SDcenter },
   ];
-
-  console.log("res", res);
 
   return res;
 };
