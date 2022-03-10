@@ -44,9 +44,9 @@ export default function Index() {
           <span className="font-semibold">Confidentiality:</span>
           <br /> This questionnaire includes questions that could be considered
           sensitive. Your participation is completely voluntary. All of your
-          answers are confidential and will be deleted as soon as your personal
-          values assessment has been automatically generated. If you agree to
-          these terms, please click on "Start questionnaire".
+          answers are confidential and all computations are made by your
+          computer. No data will be sent.. If you agree to these terms, please
+          click on "Start questionnaire".
         </p>
       </section>
       <div className="flex space-x-2 border-t pt-5">
