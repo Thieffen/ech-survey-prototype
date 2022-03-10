@@ -48,7 +48,7 @@ export default function QuestionnaireRoute() {
             <GenericQuestionSelector
               key={question.id}
               id={question.id}
-              index={index}
+              index={index + 1}
               title={question.title}
             />
           ))}
