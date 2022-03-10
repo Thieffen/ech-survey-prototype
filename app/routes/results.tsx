@@ -7,6 +7,7 @@ import RadarChart from "~/components/results/RadarChart";
 import { questions } from "~/utils/questions";
 import { compute, SchwartzValuesUE } from "~/utils/schwartz";
 import ResultsTable from "~/components/results/ResultsTable";
+import { min } from "rxjs/operators";
 var LinearScale = require("linear-scale");
 
 export default function Results() {
@@ -29,12 +30,16 @@ export default function Results() {
   const UserValues = Object.fromEntries(mapUser);
 
   // find what are the min/max values
-  console.log("EUvalues", EUValues);
-  console.log("Uservalues", UserValues);
+  const allValues: Array<number> = Object.values(EUValues).concat(
+    Object.values(UserValues)
+  );
+
+  const minValue: number = Math.min(...allValues);
+  const maxValue: number = Math.max(...allValues);
 
   // rescale values
   //prettier-ignore
-  var scale = LinearScale().domain([-2, 2]).range([0, 100])
+  var scale = LinearScale().domain([minValue, maxValue]).range([0, 100])
   function scaleValues(p) {
     Object.keys(p).forEach((c) => (p[c] = scale(+p[c])));
   }
