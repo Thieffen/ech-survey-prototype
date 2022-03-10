@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Small Hack to make the radar char absolute values transparent */
+body > div:nth-child(2) > section:nth-child(1) > svg > g > g > g:nth-child(1) > text {
+    fill: transparent;
+}
