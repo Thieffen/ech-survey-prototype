@@ -30,7 +30,6 @@ export type AppContextType = {
   genderHandler: Function;
   questionnaire: Questionnaire;
   questionnaireHandler: Function;
-  questionnaireCompleted: boolean;
 };
 
 export default function App() {
@@ -42,7 +41,7 @@ export default function App() {
 
   const [questionnaire, setQuestionnaire] = useState<Questionnaire>({});
 
-  const updateQuestionnaire = (questionId: string, answer: string) => {
+  const updateQuestionnaire = (questionId: string, answer: number) => {
     setQuestionnaire((prevState) => ({
       ...questionnaire,
       [questionId]: answer,

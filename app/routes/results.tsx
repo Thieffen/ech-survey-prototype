@@ -18,27 +18,32 @@ export default function Results() {
 
   const results = isCompleted ? compute(questionnaire) : [];
 
-  //prettier-ignore
-  var scale = LinearScale().domain([-2, 2]).range([0, 100])
+  // compute EU average citizen Schwartz values
+  const mapEU = new Map();
+  SchwartzValuesUE.forEach((sv) => mapEU.set(sv.key, sv.value));
+  const EUValues = Object.fromEntries(mapEU);
 
-  const map = new Map();
-  SchwartzValuesUE.forEach((sv) => map.set(sv.key, sv.value));
-
+  // compute User Schwartz values
   const mapUser = new Map();
   results.forEach((sv) => mapUser.set(sv.key, sv.value));
-
-  const EUValues = Object.fromEntries(map);
   const UserValues = Object.fromEntries(mapUser);
 
+  // find what are the min/max values
+  console.log("EUvalues", EUValues);
+  console.log("Uservalues", UserValues);
+
+  // rescale values
+  //prettier-ignore
+  var scale = LinearScale().domain([-2, 2]).range([0, 100])
   function scaleValues(p) {
     Object.keys(p).forEach((c) => (p[c] = scale(+p[c])));
   }
-
   const EUValuesRescaled = Object.assign({}, EUValues);
   const UserValuesRescaled = Object.assign({}, UserValues);
   scaleValues(EUValuesRescaled);
   scaleValues(UserValuesRescaled);
 
+  // format values to be consumed by the RadarChart
   const sets = [
     {
       key: "eu",

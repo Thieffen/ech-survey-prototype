@@ -46,9 +46,9 @@ export default function ResultsTable({ variables, sets }) {
                       {variable.label}
                     </td>
                     <td className="whitespace-nowrap bg-orange-50 py-4 px-3 text-right text-sm text-gray-500">
-                      {sets.filter((s) => s.key === "user")[0].valuesUnscaled[
-                        variable.key
-                      ] || 0}
+                      {sets
+                        .filter((s) => s.key === "user")[0]
+                        .valuesUnscaled[variable.key]?.toFixed(5) || 0}
                     </td>
                     <td className="whitespace-nowrap bg-orange-50 py-4 px-3 text-right text-sm text-gray-500">
                       {sets

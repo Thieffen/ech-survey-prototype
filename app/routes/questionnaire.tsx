@@ -71,6 +71,7 @@ export default function QuestionnaireRoute() {
             </p>
           ))}
       </div>
+      <Debug questionnaire={questionnaire} gender={gender} />
     </>
   );
 }

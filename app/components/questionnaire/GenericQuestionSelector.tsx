@@ -23,7 +23,7 @@ export default function GenericQuestionSelector({ id, title, index }: Props) {
     useOutletContext<AppContextType>();
 
   const update = (questionId: string, answer: string) => {
-    questionnaireHandler(questionId, answer.slice(-1));
+    questionnaireHandler(questionId, parseInt(answer.slice(-1)));
   };
 
   return (
@@ -54,7 +54,7 @@ export default function GenericQuestionSelector({ id, title, index }: Props) {
               <div key={option.id} className="flex items-center">
                 <input
                   // @ts-ignore
-                  checked={questionnaire[id] === option.id}
+                  checked={questionnaire[id] === +option.id}
                   id={inputId}
                   name={id}
                   type="radio"
@@ -66,7 +66,7 @@ export default function GenericQuestionSelector({ id, title, index }: Props) {
                   className={classNames(
                     "ml-3 block cursor-pointer text-xs font-medium",
                     // @ts-ignore
-                    questionnaire[id] === option.id
+                    questionnaire[id] === +option.id
                       ? "text-indigo-500"
                       : "text-gray-500"
                   )}
