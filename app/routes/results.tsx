@@ -1,13 +1,12 @@
 import { useNavigate, useOutletContext } from "remix";
 import ButtonSecondary from "~/components/layout/ButtonSecondary";
 import Steps from "~/components/layout/Steps";
-import Debug from "~/components/layout/Debug";
 import { AppContextType } from "~/root";
 import RadarChart from "~/components/results/RadarChart";
 import { questions } from "~/utils/questions";
 import { compute, SchwartzValuesUE } from "~/utils/schwartz";
 import ResultsTable from "~/components/results/ResultsTable";
-import { min } from "rxjs/operators";
+
 var LinearScale = require("linear-scale");
 
 export default function Results() {
@@ -38,14 +37,16 @@ export default function Results() {
   const maxValue: number = Math.max(...allValues);
 
   // let's add an offset so that the center of the graph is not the minValue
-  const minOffset: number = (Math.abs(maxValue) - Math.abs(minValue)) / 2;
+  const minOffset: number = Math.abs(maxValue - minValue) / 5;
 
   // rescale values
   //prettier-ignore
-  var scale = LinearScale().domain([minValue + minOffset, maxValue]).range([0, 100])
+  var scale = LinearScale().domain([minValue - minOffset, maxValue]).range([0, 100])
+
   function scaleValues(p) {
     Object.keys(p).forEach((c) => (p[c] = scale(+p[c])));
   }
+
   const EUValuesRescaled = Object.assign({}, EUValues);
   const UserValuesRescaled = Object.assign({}, UserValues);
   scaleValues(EUValuesRescaled);
