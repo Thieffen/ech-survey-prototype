@@ -72,8 +72,8 @@ export default function Results() {
   // we compute user top and bottom values
   // top values are those above EU average
   // bottom values are those below EU average
-  console.log(UserValues);
-  console.log(EUValues);
+  // console.log(UserValues);
+  // console.log(EUValues);
 
   const sortableTopValues = [];
   const sortableTopValuesAbs = [];
@@ -103,12 +103,12 @@ export default function Results() {
   sortableTopValuesAbs.sort((a, b) => b[1] - a[1]);
   // @ts-ignore
   sortableBottomValuesAbs.sort((a, b) => b[1] - a[1]);
-
-  console.log("sortableTopValues", sortableTopValues);
-  console.log("sortableBottomValues", sortableBottomValues);
-
-  console.log("sortableTopValuesAbs", sortableTopValuesAbs);
-  console.log("sortableBottomValuesAbs", sortableBottomValuesAbs);
+  //
+  // console.log("sortableTopValues", sortableTopValues);
+  // console.log("sortableBottomValues", sortableBottomValues);
+  //
+  // console.log("sortableTopValuesAbs", sortableTopValuesAbs);
+  // console.log("sortableBottomValuesAbs", sortableBottomValuesAbs);
 
   // @ts-ignore
   return (
