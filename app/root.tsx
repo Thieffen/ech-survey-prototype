@@ -13,7 +13,7 @@ import { useState } from "react";
 import { questions } from "~/utils/questions";
 
 export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
+  return { title: "EU Personal Values Self-Assessment" };
 };
 
 export function links() {
