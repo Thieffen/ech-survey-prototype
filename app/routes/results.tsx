@@ -399,16 +399,12 @@ export default function Results() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="capitalize">{sortableTopValuesAbs[0][0]}</td>
-                    <td className="capitalize">
-                      {sortableBottomValuesAbs[0][0]}
-                    </td>
+                    <td>{sortableTopValuesAbs[0][0]}</td>
+                    <td>{sortableBottomValuesAbs[0][0]}</td>
                   </tr>
                   <tr>
-                    <td className="capitalize">{sortableTopValuesAbs[1][0]}</td>
-                    <td className="capitalize">
-                      {sortableBottomValuesAbs[1][0]}
-                    </td>
+                    <td>{sortableTopValuesAbs[1][0]}</td>
+                    <td>{sortableBottomValuesAbs[1][0]}</td>
                   </tr>
                 </tbody>
               </table>
