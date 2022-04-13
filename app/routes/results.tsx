@@ -120,7 +120,7 @@ export default function Results() {
         step3="current"
       />
 
-      <div>
+      <div className="space-y-6">
         {isCompleted ? (
           <>
             <section className="prose">
@@ -148,6 +148,131 @@ export default function Results() {
               </div>
 
               <RadarChart variables={SchwartzValuesUE} sets={sets} />
+            </section>
+            <section className="prose">
+              <h3>How to read the graph?</h3>
+              <p>
+                The further out the line for a value, the more important it is
+                to you. The yellow line represents you, the blue one an average
+                EU citizen.
+              </p>
+              <p>
+                The result for an average EU citizen is calculated using the
+                2018 wave of EU countries included in the European Social
+                Survey: http://www.europeansocialsurvey.org/.
+              </p>
+              <p>
+                Countries missing in the average: Greece, Luxemburg, Malta,
+                Romania.
+              </p>
+              <p>
+                Neighbouring values are usually positively related, e.g. people,
+                who strongly endorse Tradition, typically also endorse
+                Conformity and Security highly. Values that are on opposing
+                sides of the circle are negatively related, e.g. people, who
+                strongly endorse Universalism, typically support Power less.
+              </p>
+            </section>
+            <section className="prose">
+              <h3>Explaining the values</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Value</th>
+                    <th>Defining goal</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Self-Direction</td>
+                    <td>
+                      Independent thought and action–choosing, creating,
+                      exploring
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Stimulation</td>
+                    <td>Excitement, novelty, and challenge in life</td>
+                  </tr>
+                  <tr>
+                    <td>Hedonism</td>
+                    <td>Pleasure or sensuous gratification for oneself</td>
+                  </tr>
+                  <tr>
+                    <td>Achievement</td>
+                    <td>
+                      Personal success through demonstrating competence
+                      according to social standards
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Power</td>
+                    <td>
+                      Social status and prestige, control or dominance over
+                      people and resources
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Security</td>
+                    <td>
+                      Safety, harmony, and stability of society, of
+                      relationships, and of sel
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Conformity</td>
+                    <td>
+                      Restraint of actions, inclinations, and impulses likely to
+                      upset or harm others and violate social expectations or
+                      norms
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tradition</td>
+                    <td>
+                      Respect, commitment, and acceptance of the customs and
+                      ideas that one’s culture or religion provides
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Benevolence</td>
+                    <td>
+                      Preserving and enhancing the welfare of those with whom
+                      one is in frequent personal contact (the ‘in-group’)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Universalism</td>
+                    <td>
+                      Understanding, appreciation, tolerance, and protection for
+                      the welfare of all people and for nature
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+            <section className="prose">
+              <h3>What does it mean?</h3>
+              <p>
+                Whether your values are close to the average of EU citizens or
+                far away from them is neither good nor bad.
+              </p>
+              <p>
+                However, if your values score for a value is higher than the EU
+                average, this could mean that you tend to prioritise this value
+                more when thinking about societal problems and policy solutions
+                to them. On the other hand, if your score for a value is lower
+                than the EU average you probably do not think about this value
+                as much as an average citizen when analysing societal problems
+                and possible policy measures to solve them.
+              </p>
+              <p>
+                Obviously everyone has their own values priority, however if you
+                are a policymaker, you might want to make a conscious effort to
+                understand citizens' concerns, where you differ from them
+                significantly to represent all relevant views present in
+                society.
+              </p>
             </section>
             <section className="prose">
               <h3>How to read the graph?</h3>
@@ -274,12 +399,16 @@ export default function Results() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{sortableTopValuesAbs[0][0]}</td>
-                    <td>{sortableBottomValuesAbs[0][0]}</td>
+                    <td className="capitalize">{sortableTopValuesAbs[0][0]}</td>
+                    <td className="capitalize">
+                      {sortableBottomValuesAbs[0][0]}
+                    </td>
                   </tr>
                   <tr>
-                    <td>{sortableTopValuesAbs[1][0]}</td>
-                    <td>{sortableBottomValuesAbs[1][0]}</td>
+                    <td className="capitalize">{sortableTopValuesAbs[1][0]}</td>
+                    <td className="capitalize">
+                      {sortableBottomValuesAbs[1][0]}
+                    </td>
                   </tr>
                 </tbody>
               </table>

@@ -1,14 +1,14 @@
 export const SchwartzValuesUE = [
-  { key: "self_direction", label: "self direction", value: 0.353143 },
-  { key: "stimulation", label: "stimulation", value: -0.76438 },
-  { key: "hedonism", label: "hedonism", value: -0.21825 },
-  { key: "achievement", label: "achievement", value: -0.02537 },
-  { key: "power", label: "power", value: -0.97554 },
-  { key: "security", label: "security", value: 0.441064 },
-  { key: "conformity", label: "conformity", value: -0.2164 },
-  { key: "tradition", label: "tradition", value: 0.143017 },
-  { key: "benevolence", label: "benevolence", value: 0.775131 },
-  { key: "universalism", label: "universalism", value: 0.63345 },
+  { key: "self_direction", label: "Self-direction", value: 0.353143 },
+  { key: "stimulation", label: "Stimulation", value: -0.76438 },
+  { key: "hedonism", label: "Hedonism", value: -0.21825 },
+  { key: "achievement", label: "Achievement", value: -0.02537 },
+  { key: "power", label: "Power", value: -0.97554 },
+  { key: "security", label: "Security", value: 0.441064 },
+  { key: "conformity", label: "Conformity", value: -0.2164 },
+  { key: "tradition", label: "Tradition", value: 0.143017 },
+  { key: "benevolence", label: "Benevolence", value: 0.775131 },
+  { key: "universalism", label: "Universalism", value: 0.63345 },
 ];
 
 export const compute = (questionnaire: { string: number }) => {
